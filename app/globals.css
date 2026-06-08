@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* FII Brand Colors - Foxconn Industrial Internet */
+  --fii-blue: #003087;
+  --fii-blue-light: #0055A4;
+  --fii-red: #E30613;
+  --fii-red-dark: #B80510;
+
+  /* Industrial Light Theme (Control Room) */
+  --bg: #F8F9FC;
+  --bg-elevated: #FFFFFF;
+  --border: #E2E8F0;
+  --text: #0F172A;
+  --text-muted: #64748B;
+
+  /* Status */
+  --status-running: #10B981;
+  --status-idle: #F59E0B;
+  --status-error: #EF4444;
+  --status-maint: #F97316;
+  --status-offline: #94A3B8;
+}
+
+.dark {
+  --bg: #0A0E17;
+  --bg-elevated: #111827;
+  --border: #1F2937;
+  --text: #F1F5F9;
+  --text-muted: #94A3B8;
+}
+
+/* Base */
+body {
+  font-family: var(--font-geist-sans);
+}
+
+/* Industrial Card & Surface */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.dark .card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Status badges & pulses (for running/error) */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+}
+
+.status-running {
+  background: var(--status-running);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  animation: pulse-running 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.status-error {
+  background: var(--status-error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
+  animation: pulse-error 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-running {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+@keyframes pulse-error {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+/* React Flow custom node styles (will be used in phase 3) */
+.react-flow__node-machine {
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--bg-elevated);
+  min-width: 168px;
+  font-size: 13px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.dark .react-flow__node-machine {
+  background: #0F172A;
+}
+
+/* Table & Data */
+.table-industrial th {
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+/* Login card polish */
+.login-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+}
+
+.dark .login-card {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+}
+
+/* FII Button primary */
+.btn-fii {
+  background: var(--fii-blue);
+  color: white;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-fii:hover {
+  background: var(--fii-blue-light);
+}
+
+.btn-fii:active {
+  transform: translateY(1px);
+}
+
+.btn-danger {
+  background: var(--fii-red);
+  color: white;
+}
+
+.btn-danger:hover {
+  background: var(--fii-red-dark);
+}
+
+/* KPI Card */
+.kpi-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle grid for industrial feel (optional on landing) */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(0, 48, 135, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 48, 135, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}

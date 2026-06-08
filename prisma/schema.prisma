@@ -1,0 +1,138 @@
+// FII LineGuard - Prisma Schema
+// Manufacturing Execution System for Foxconn Industrial Internet
+// SQLite (dev) / PostgreSQL (prod)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(cuid())
+  employeeCode  String   @unique
+  name          String
+  role          String   // CHU_QUAN | TRO_LY | CHUYEN_TRUONG | KY_SU
+  password      String   // Demo only - plain text for simplicity (in prod: hash)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  auditLogs     AuditLog[]
+}
+
+model ProductionLine {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  name          String
+  description   String?
+  status        String   @default("RUNNING") // RUNNING | STOPPED | MAINTENANCE
+  targetDaily   Int      @default(12000)
+  createdAt     DateTime @default(now())
+
+  machines      Machine[]
+}
+
+model Machine {
+  id            String   @id @default(cuid())
+  lineId        String
+  code          String   // e.g. MKZ-01
+  name          String
+  category      String   // FEEDING | ASSEMBLY | TESTING | QC | PACKAGING | OUTFEED
+  model         String?
+  serial        String?
+  supplier      String?
+  installDate   DateTime?
+  status        String   @default("IDLE") // RUNNING | IDLE | ERROR | MAINTENANCE | OFFLINE
+  oee           Float    @default(0)
+  throughput    Int      @default(0)     // units/hour current
+  cycleTime     Float    @default(3.5)   // seconds
+  totalProduced Int      @default(0)
+  errorCount    Int      @default(0)
+  plcConnected  Boolean  @default(false)
+  lastSync      DateTime?
+
+  line          ProductionLine @relation(fields: [lineId], references: [id])
+  logs          MachineLog[]
+  alerts        Alert[]
+  plcConfig     PLCConfig?
+  guides        TroubleshootingGuide[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model MachineLog {
+  id        String   @id @default(cuid())
+  machineId String
+  timestamp DateTime @default(now())
+  type      String   // STATUS | PRODUCTION | ERROR | MAINTENANCE | PLC_SYNC
+  message   String
+  shift     String?  // 1 | 2 | 3
+  value     Float?
+
+  machine   Machine  @relation(fields: [machineId], references: [id])
+}
+
+model Alert {
+  id         String   @id @default(cuid())
+  machineId  String?
+  severity   String   // INFO | WARNING | ERROR | CRITICAL
+  message    String
+  timestamp  DateTime @default(now())
+  resolved   Boolean  @default(false)
+  resolvedBy String?
+  resolvedAt DateTime?
+
+  machine    Machine? @relation(fields: [machineId], references: [id])
+}
+
+model PLCConfig {
+  id          String   @id @default(cuid())
+  machineId   String   @unique
+  protocol    String   // MODBUS_TCP | SIEMENS_S7 | OPC_UA
+  ipAddress   String?
+  port        Int?
+  tags        String?  // JSON string of tag mappings
+  connected   Boolean  @default(false)
+  lastSync    DateTime?
+  heartbeat   Int      @default(5000)
+
+  machine     Machine  @relation(fields: [machineId], references: [id])
+}
+
+model TroubleshootingGuide {
+  id          String   @id @default(cuid())
+  machineId   String?
+  errorCode   String
+  title       String
+  description String
+  steps       String   // JSON array of step objects {step, action, expected}
+  createdAt   DateTime @default(now())
+
+  machine     Machine? @relation(fields: [machineId], references: [id])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String   // LOGIN | LOGOUT | UPDATE_MACHINE | PLC_WRITE | CREATE_ALERT etc.
+  entity    String?
+  entityId  String?
+  details   String?  // JSON
+  timestamp DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model ShiftTarget {
+  id           String   @id @default(cuid())
+  lineId       String
+  shift        String   // "1" | "2" | "3"
+  targetQty    Int
+  date         String   // YYYY-MM-DD
+  actualQty    Int      @default(0)
+  createdAt    DateTime @default(now())
+}

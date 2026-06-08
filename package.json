@@ -1,0 +1,49 @@
+{
+  "name": "fii-lineguard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:push": "prisma db push",
+    "db:reset": "prisma db push --force-reset",
+    "seed": "tsx prisma/seed.ts",
+    "db:seed": "npm run seed",
+    "studio": "prisma studio"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "@xyflow/react": "^12.11.0",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.4.0",
+    "framer-motion": "^12.40.0",
+    "jose": "^6.2.3",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
+    "lucide-react": "^1.17.0",
+    "next": "16.2.7",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hook-form": "^7.78.0",
+    "recharts": "^3.8.1",
+    "sonner": "^2.0.7",
+    "xlsx": "^0.18.5",
+    "zod": "^4.4.3",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@prisma/client": "^5.22.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.7",
+    "prisma": "^5.22.0",
+    "tailwindcss": "^4",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}
