@@ -92,14 +92,14 @@ const INITIAL_NODES: Node[] = [
 
 const INITIAL_EDGES: Edge[] = [
   // Parallel feeding converge
-  { id: 'e1-3', source: 'MKZ-01', target: 'MKZ-03', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
-  { id: 'e2-3', source: 'MKZ-02', target: 'MKZ-03', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
+  { id: 'e1-3', source: 'MKZ-01', target: 'MKZ-03', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
+  { id: 'e2-3', source: 'MKZ-02', target: 'MKZ-03', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
   // Main sequential flow
-  { id: 'e3-4', source: 'MKZ-03', target: 'MKZ-04', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
-  { id: 'e4-5', source: 'MKZ-04', target: 'MKZ-05', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
-  { id: 'e5-6', source: 'MKZ-05', target: 'MKZ-06', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
-  { id: 'e6-7', source: 'MKZ-06', target: 'MKZ-07', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
-  { id: 'e7-8', source: 'MKZ-07', target: 'MKZ-08', animated: true, style: { stroke: '#003087', strokeWidth: 2 } },
+  { id: 'e3-4', source: 'MKZ-03', target: 'MKZ-04', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
+  { id: 'e4-5', source: 'MKZ-04', target: 'MKZ-05', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
+  { id: 'e5-6', source: 'MKZ-05', target: 'MKZ-06', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
+  { id: 'e6-7', source: 'MKZ-06', target: 'MKZ-07', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
+  { id: 'e7-8', source: 'MKZ-07', target: 'MKZ-08', animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } },
 ]
 
 interface MachineDrawerProps {
@@ -154,24 +154,24 @@ function MachineDrawer({ machineCode, onClose }: MachineDrawerProps) {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="w-full max-w-md bg-white dark:bg-[#0A0E17] border-l border-[#E2E8F0] dark:border-white/10 shadow-2xl overflow-y-auto"
+            className="w-full max-w-md bg-white dark:bg-[var(--background-dark)] border-l border-[var(--border)] dark:border-white/10 shadow-2xl overflow-y-auto"
           >
             <div className="p-6">
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <div className="font-mono text-sm text-[#64748B]">{machine.code}</div>
+                  <div className="font-mono text-sm text-[text-slate-500]">{machine.code}</div>
                   <div className="text-2xl font-semibold tracking-tight">{machine.name}</div>
-                  <div className="mt-1 inline-block px-3 py-0.5 text-xs font-medium rounded-full bg-[#003087]/10 text-[#003087] dark:bg-white/10 dark:text-white">
+                  <div className="mt-1 inline-block px-3 py-0.5 text-xs font-medium rounded-full bg-[var(--primary)]/10 text-[var(--primary)] dark:bg-white/10 dark:text-white">
                     {machine.category}
                   </div>
                 </div>
-                <button onClick={onClose} className="text-2xl leading-none text-[#64748B] hover:text-black dark:hover:text-white">×</button>
+                <button onClick={onClose} className="text-2xl leading-none text-[text-slate-500] hover:text-black dark:hover:text-white">×</button>
               </div>
 
               {/* Live Status */}
               <div className="card p-4 mb-6">
-                <div className="text-xs tracking-widest text-[#64748B] mb-2">TRẠNG THÁI REALTIME</div>
+                <div className="text-xs tracking-widest text-[text-slate-500] mb-2">TRẠNG THÁI REALTIME</div>
                 <div className="flex items-center justify-between">
                   <div className="text-3xl font-semibold tabular-nums">{machine.status}</div>
                   <div className={`px-4 py-1 rounded-full text-sm font-medium ${machine.status === 'RUNNING' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400' : machine.status === 'ERROR' ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-400' : 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-400'}`}>
@@ -188,26 +188,26 @@ function MachineDrawer({ machineCode, onClose }: MachineDrawerProps) {
               {/* Basic Info */}
               <div className="space-y-4 mb-6 text-sm">
                 <div className="flex justify-between border-b pb-2">
-                  <span className="text-[#64748B]">Model / Serial</span>
+                  <span className="text-[text-slate-500]">Model / Serial</span>
                   <span className="font-medium">MKZ-ASM-03 • FII-2024-88123</span>
                 </div>
                 <div className="flex justify-between border-b pb-2">
-                  <span className="text-[#64748B]">Nhà cung cấp</span>
+                  <span className="text-[text-slate-500]">Nhà cung cấp</span>
                   <span className="font-medium">Foxconn Automation</span>
                 </div>
                 <div className="flex justify-between border-b pb-2">
-                  <span className="text-[#64748B]">Ngày lắp đặt</span>
+                  <span className="text-[text-slate-500]">Ngày lắp đặt</span>
                   <span className="font-medium">15/03/2024</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#64748B]">Cycle time</span>
+                  <span className="text-[text-slate-500]">Cycle time</span>
                   <span className="font-medium">{machine.cycleTime}s</span>
                 </div>
               </div>
 
               {/* Full PLC Connection & Control (Phase 4) */}
               <div className="mb-6">
-                <div className="text-xs tracking-widest text-[#64748B] mb-2">KẾT NỐI PLC &amp; ĐIỀU KHIỂN</div>
+                <div className="text-xs tracking-widest text-[text-slate-500] mb-2">KẾT NỐI PLC &amp; ĐIỀU KHIỂN</div>
                 <div className="card p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
@@ -222,18 +222,18 @@ function MachineDrawer({ machineCode, onClose }: MachineDrawerProps) {
                   {/* PLC Form */}
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
-                      <div className="text-[#64748B]">IP Address</div>
-                      <input defaultValue={`192.168.10.10${machine.code.slice(-1)}`} className="w-full border rounded px-2 py-1 bg-white dark:bg-[#111827] text-xs" />
+                      <div className="text-[text-slate-500]">IP Address</div>
+                      <input defaultValue={`192.168.10.10${machine.code.slice(-1)}`} className="w-full border rounded px-2 py-1 bg-white dark:bg-[var(--card-dark)] text-xs" />
                     </div>
                     <div>
-                      <div className="text-[#64748B]">Port</div>
-                      <input defaultValue="502" className="w-full border rounded px-2 py-1 bg-white dark:bg-[#111827] text-xs" />
+                      <div className="text-[text-slate-500]">Port</div>
+                      <input defaultValue="502" className="w-full border rounded px-2 py-1 bg-white dark:bg-[var(--card-dark)] text-xs" />
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-[#64748B] text-xs mb-1">Tag Mapping (JSON)</div>
-                    <textarea defaultValue={`{"status":"hr:300${machine.code.slice(-1)}","count":"hr:3105","reset":"coil:100${machine.code.slice(-1)}"}`} className="w-full h-16 text-xs font-mono border rounded p-2 bg-[#F8F9FC] dark:bg-black/30" />
+                    <div className="text-[text-slate-500] text-xs mb-1">Tag Mapping (JSON)</div>
+                    <textarea defaultValue={`{"status":"hr:300${machine.code.slice(-1)}","count":"hr:3105","reset":"coil:100${machine.code.slice(-1)}"}`} className="w-full h-16 text-xs font-mono border rounded p-2 bg-[var(--background)] dark:bg-black/30" />
                   </div>
 
                   <div className="flex gap-2">
@@ -248,20 +248,20 @@ function MachineDrawer({ machineCode, onClose }: MachineDrawerProps) {
                         <button onClick={() => {
                           updateMachine(machine.id, { throughput: machine.throughput + 150 })
                           toast.success('Write thành công: Tăng throughput (demo)')
-                        }} className="flex-1 h-8 rounded bg-[#003087] text-white text-xs font-medium">WRITE +150</button>
+                        }} className="flex-1 h-8 rounded bg-[var(--primary)] text-white text-xs font-medium">WRITE +150</button>
                         <button onClick={handleSimulateError} className="flex-1 h-8 rounded border text-xs text-red-600">Sim ERROR</button>
                       </>
                     ) : (
-                      <div className="text-xs text-[#94A3B8] flex-1 text-center pt-1.5">Chỉ Kỹ Sư + Chủ Quản được WRITE</div>
+                      <div className="text-xs text-[text-slate-400] flex-1 text-center pt-1.5">Chỉ Kỹ Sư + Chủ Quản được WRITE</div>
                     )}
                   </div>
-                  <div className="text-[10px] text-[#64748B]">Heartbeat: 5s • Last sync: vừa xong</div>
+                  <div className="text-[10px] text-[text-slate-500]">Heartbeat: 5s • Last sync: vừa xong</div>
                 </div>
               </div>
 
               {/* Troubleshooting Guide (from seed) */}
               <div className="mb-6">
-                <div className="text-xs tracking-widest text-[#64748B] mb-2">HƯỚNG DẪN KHẮC PHỤC SỰ CỐ</div>
+                <div className="text-xs tracking-widest text-[text-slate-500] mb-2">HƯỚNG DẪN KHẮC PHỤC SỰ CỐ</div>
                 <div className="card p-4 text-sm space-y-2">
                   <div className="font-medium">Lỗi phổ biến: Mất tín hiệu encoder / Nhiệt độ cao</div>
                   <ol className="list-decimal pl-5 text-[#475569] dark:text-slate-300 space-y-1 text-xs">
@@ -270,17 +270,17 @@ function MachineDrawer({ machineCode, onClose }: MachineDrawerProps) {
                     <li>Chạy thử 5 chu kỳ không tải</li>
                     <li>Nếu vẫn lỗi → chuyển sang trạm rework</li>
                   </ol>
-                  <button className="mt-2 text-xs text-[#003087] hover:underline">Xem đầy đủ hướng dẫn →</button>
+                  <button className="mt-2 text-xs text-[var(--primary)] hover:underline">Xem đầy đủ hướng dẫn →</button>
                 </div>
               </div>
 
               {/* Advanced Settings stub */}
               <div>
-                <div className="text-xs tracking-widest text-[#64748B] mb-2">SETTING NÂNG CAO</div>
+                <div className="text-xs tracking-widest text-[text-slate-500] mb-2">SETTING NÂNG CAO</div>
                 <div className="card p-4 text-sm">
-                  <div className="text-[#64748B] text-xs mb-2">Tag mapping (Modbus)</div>
-                  <div className="font-mono text-xs bg-[#F8F9FC] dark:bg-black/30 p-2 rounded">coil:100{machine.code.slice(-1)} • hr:3005</div>
-                  <button className="mt-3 w-full h-9 text-sm border rounded-lg hover:bg-white dark:hover:bg-[#111827]">
+                  <div className="text-[text-slate-500] text-xs mb-2">Tag mapping (Modbus)</div>
+                  <div className="font-mono text-xs bg-[var(--background)] dark:bg-black/30 p-2 rounded">coil:100{machine.code.slice(-1)} • hr:3005</div>
+                  <button className="mt-3 w-full h-9 text-sm border rounded-lg hover:bg-white dark:hover:bg-[var(--card-dark)]">
                     Chỉnh sửa tag mapping (Kỹ sư + Chủ Quản)
                   </button>
                 </div>
@@ -355,7 +355,7 @@ function MKZLineContent() {
   }, [selectedNode, activeTab])
 
   const onConnect = useCallback(
-    (params: Connection) => setEdges((eds) => addEdge({ ...params, animated: true, style: { stroke: '#003087', strokeWidth: 2 } }, eds)),
+    (params: Connection) => setEdges((eds) => addEdge({ ...params, animated: true, style: { stroke: 'var(--primary)', strokeWidth: 2 } }, eds)),
     [setEdges]
   )
 
@@ -540,7 +540,7 @@ function MKZLineContent() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#F8F9FC] dark:bg-[#0A0E17] flex flex-col">
+    <div className="min-h-screen bg-[var(--background)] dark:bg-[var(--background-dark)] flex flex-col">
       {/* Top controls (Header is global) */}
       <div className="max-w-7xl mx-auto px-6 pt-3 flex justify-end gap-2 text-sm">
         <button 
@@ -550,16 +550,16 @@ function MKZLineContent() {
           {isSimulating ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           {isSimulating ? 'Dừng Simulation' : 'Chạy Simulation'}
         </button>
-        <button onClick={saveLayout} className="flex items-center gap-1.5 px-3 h-8 rounded-lg border hover:bg-white dark:hover:bg-[#111827]">
+        <button onClick={saveLayout} className="flex items-center gap-1.5 px-3 h-8 rounded-lg border hover:bg-white dark:hover:bg-[var(--card-dark)]">
           <Save className="w-4 h-4" /> Lưu layout
         </button>
-        <button onClick={resetLayout} className="flex items-center gap-1.5 px-3 h-8 rounded-lg border hover:bg-white dark:hover:bg-[#111827]">
+        <button onClick={resetLayout} className="flex items-center gap-1.5 px-3 h-8 rounded-lg border hover:bg-white dark:hover:bg-[var(--card-dark)]">
           <RotateCcw className="w-4 h-4" /> Reset
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-[#E2E8F0] dark:border-white/10 bg-white dark:bg-[#0A0E17]">
+      <div className="border-b border-[var(--border)] dark:border-white/10 bg-white dark:bg-[var(--background-dark)]">
         <div className="max-w-7xl mx-auto px-6 flex gap-1">
           {[
             { key: 'diagram', label: 'Sơ đồ dây chuyền' },
@@ -569,7 +569,7 @@ function MKZLineContent() {
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key as any)}
-              className={`px-5 py-3 text-sm font-medium border-b-2 transition ${activeTab === tab.key ? 'border-[#003087] text-[#003087] dark:text-[#60A5FA] dark:border-[#60A5FA]' : 'border-transparent text-[#64748B] hover:text-[#003087]'}`}
+              className={`px-5 py-3 text-sm font-medium border-b-2 transition ${activeTab === tab.key ? 'border-[var(--primary)] text-[var(--primary)] dark:text-[var(--primary-dark)] dark:border-[var(--primary-dark)]' : 'border-transparent text-[text-slate-500] hover:text-[var(--primary)]'}`}
             >
               {tab.label}
             </button>
@@ -580,7 +580,7 @@ function MKZLineContent() {
       {/* Main Content */}
       <div className="flex-1 max-w-7xl mx-auto w-full px-6 py-6">
         {activeTab === 'diagram' && (
-          <div className="h-[calc(100vh-180px)] rounded-2xl border border-[#E2E8F0] dark:border-white/10 overflow-hidden bg-white dark:bg-[#111827] relative">
+          <div className="h-[calc(100vh-180px)] rounded-2xl border border-[var(--border)] dark:border-white/10 overflow-hidden bg-white dark:bg-[var(--card-dark)] relative">
             <ReactFlow
               nodes={nodes}
               edges={edges}
@@ -592,44 +592,44 @@ function MKZLineContent() {
               fitView
               snapToGrid
               snapGrid={[20, 20]}
-              className="bg-[#F8F9FC] dark:bg-[#0A0E17]"
+              className="bg-[var(--background)] dark:bg-[var(--background-dark)]"
             >
-              <Background color="#003087" gap={24} size={1.5} />
+              <Background color="var(--primary)" gap={24} size={1.5} />
               <Controls />
               <MiniMap 
                 nodeColor={(n) => {
                   const m = n.data?.machine as SimMachine | undefined
-                  if (!m) return '#64748B'
+                  if (!m) return 'text-slate-500'
                   return m.status === 'RUNNING' ? '#10b981' : m.status === 'ERROR' ? '#ef4444' : '#f59e0b'
                 }}
                 maskColor="rgba(0,48,135,0.08)"
               />
 
               {/* Toolbar Panel */}
-              <Panel position="top-left" className="bg-white/95 dark:bg-[#0A0E17]/95 backdrop-blur border rounded-xl p-2 shadow flex gap-1.5 m-3">
-                <button onClick={addMachine} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[#F8F9FC] dark:hover:bg-white/5">
+              <Panel position="top-left" className="bg-white/95 dark:bg-[var(--background-dark)]/95 backdrop-blur border rounded-xl p-2 shadow flex gap-1.5 m-3">
+                <button onClick={addMachine} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[var(--background)] dark:hover:bg-white/5">
                   <Plus className="w-4 h-4" /> Thêm máy
                 </button>
                 <button onClick={deleteSelected} disabled={!selectedNode} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-red-50 disabled:opacity-40">
                   <Trash2 className="w-4 h-4" /> Xóa
                 </button>
-                <div className="w-px h-8 bg-[#E2E8F0] dark:bg-white/10 mx-1" />
-                <button onClick={undo} disabled={historyIndex <= 0} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[#F8F9FC] disabled:opacity-40">
+                <div className="w-px h-8 bg-[var(--border)] dark:bg-white/10 mx-1" />
+                <button onClick={undo} disabled={historyIndex <= 0} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[var(--background)] disabled:opacity-40">
                   <Undo className="w-4 h-4" /> Undo
                 </button>
-                <button onClick={redo} disabled={historyIndex >= history.length - 1} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[#F8F9FC] disabled:opacity-40">
+                <button onClick={redo} disabled={historyIndex >= history.length - 1} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[var(--background)] disabled:opacity-40">
                   <Redo className="w-4 h-4" /> Redo
                 </button>
-                <div className="w-px h-8 bg-[#E2E8F0] dark:bg-white/10 mx-1" />
-                <button onClick={exportPDF} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[#F8F9FC]">
+                <div className="w-px h-8 bg-[var(--border)] dark:bg-white/10 mx-1" />
+                <button onClick={exportPDF} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[var(--background)]">
                   <Download className="w-4 h-4" /> PDF
                 </button>
-                <button onClick={exportLayoutJSON} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[#F8F9FC]">
+                <button onClick={exportLayoutJSON} className="flex items-center gap-1 px-3 h-8 text-sm rounded-lg border hover:bg-[var(--background)]">
                   JSON
                 </button>
               </Panel>
 
-              <Panel position="top-right" className="m-3 text-xs bg-white/90 dark:bg-[#111827]/90 px-3 py-1 rounded border">
+              <Panel position="top-right" className="m-3 text-xs bg-white/90 dark:bg-[var(--card-dark)]/90 px-3 py-1 rounded border">
                 Kéo thả node • Nhấp để xem chi tiết • Ctrl/Cmd+Z Undo • Delete xóa • F fit view
               </Panel>
             </ReactFlow>
@@ -640,18 +640,18 @@ function MKZLineContent() {
           <div className="card p-6">
             <div className="flex items-center gap-4 mb-4">
               <div className="relative flex-1 max-w-sm">
-                <Search className="absolute left-3 top-3 w-4 h-4 text-[#64748B]" />
+                <Search className="absolute left-3 top-3 w-4 h-4 text-[text-slate-500]" />
                 <input 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Tìm mã hoặc tên máy..." 
-                  className="pl-9 w-full h-10 rounded-lg border bg-white dark:bg-[#111827] text-sm"
+                  className="pl-9 w-full h-10 rounded-lg border bg-white dark:bg-[var(--card-dark)] text-sm"
                 />
               </div>
               <select 
                 value={statusFilter} 
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="h-10 rounded-lg border bg-white dark:bg-[#111827] text-sm px-3"
+                className="h-10 rounded-lg border bg-white dark:bg-[var(--card-dark)] text-sm px-3"
               >
                 <option value="ALL">Tất cả trạng thái</option>
                 <option value="RUNNING">RUNNING</option>
@@ -659,13 +659,13 @@ function MKZLineContent() {
                 <option value="ERROR">ERROR</option>
                 <option value="MAINTENANCE">MAINTENANCE</option>
               </select>
-              <div className="text-sm text-[#64748B] ml-auto">{filteredMachines.length} máy</div>
+              <div className="text-sm text-[text-slate-500] ml-auto">{filteredMachines.length} máy</div>
             </div>
 
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b text-left text-[#64748B] text-xs tracking-wider">
+                  <tr className="border-b text-left text-[text-slate-500] text-xs tracking-wider">
                     <th className="py-3">Mã</th>
                     <th>Tên máy</th>
                     <th>Loại</th>
@@ -678,10 +678,10 @@ function MKZLineContent() {
                 </thead>
                 <tbody>
                   {filteredMachines.map(m => (
-                    <tr key={m.code} onClick={() => { setActiveTab('diagram'); setSelectedNode(m.code) }} className="border-b last:border-0 hover:bg-[#F8F9FC] dark:hover:bg-white/5 cursor-pointer">
-                      <td className="py-3 font-mono text-[#003087]">{m.code}</td>
+                    <tr key={m.code} onClick={() => { setActiveTab('diagram'); setSelectedNode(m.code) }} className="border-b last:border-0 hover:bg-[var(--background)] dark:hover:bg-white/5 cursor-pointer">
+                      <td className="py-3 font-mono text-[var(--primary)]">{m.code}</td>
                       <td>{m.name}</td>
-                      <td><span className="text-xs px-2 py-0.5 rounded bg-[#003087]/5">{m.category}</span></td>
+                      <td><span className="text-xs px-2 py-0.5 rounded bg-[var(--primary)]/5">{m.category}</span></td>
                       <td><span className={`text-xs px-2 py-0.5 rounded ${m.status === 'RUNNING' ? 'bg-emerald-100 text-emerald-700' : m.status === 'ERROR' ? 'bg-red-100 text-red-700' : 'bg-amber-100 text-amber-700'}`}>{m.status}</span></td>
                       <td className="font-semibold">{m.oee.toFixed(1)}%</td>
                       <td>{m.throughput}</td>
@@ -700,8 +700,8 @@ function MKZLineContent() {
             <h3 className="font-semibold mb-4 flex items-center gap-2"><SettingsIcon className="w-5 h-5" /> Cấu hình PLC chung - MKZ Line</h3>
             <div className="space-y-4 text-sm">
               <div>
-                <label className="text-xs text-[#64748B]">Protocol mặc định</label>
-                <select className="w-full h-10 border rounded-lg mt-1 px-3 bg-white dark:bg-[#111827]">
+                <label className="text-xs text-[text-slate-500]">Protocol mặc định</label>
+                <select className="w-full h-10 border rounded-lg mt-1 px-3 bg-white dark:bg-[var(--card-dark)]">
                   <option>MODBUS TCP</option>
                   <option>SIEMENS S7</option>
                   <option>OPC UA</option>
@@ -709,17 +709,17 @@ function MKZLineContent() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-[#64748B]">IP Range</label>
-                  <input className="w-full h-10 border rounded-lg mt-1 px-3 bg-white dark:bg-[#111827]" defaultValue="192.168.10.10x" />
+                  <label className="text-xs text-[text-slate-500]">IP Range</label>
+                  <input className="w-full h-10 border rounded-lg mt-1 px-3 bg-white dark:bg-[var(--card-dark)]" defaultValue="192.168.10.10x" />
                 </div>
                 <div>
-                  <label className="text-xs text-[#64748B]">Heartbeat (ms)</label>
-                  <input type="number" className="w-full h-10 border rounded-lg mt-1 px-3 bg-white dark:bg-[#111827]" defaultValue="5000" />
+                  <label className="text-xs text-[text-slate-500]">Heartbeat (ms)</label>
+                  <input type="number" className="w-full h-10 border rounded-lg mt-1 px-3 bg-white dark:bg-[var(--card-dark)]" defaultValue="5000" />
                 </div>
               </div>
               <button className="mt-4 btn-fii w-full h-10 rounded-xl">Lưu cấu hình PLC (Yêu cầu quyền Kỹ sư)</button>
             </div>
-            <p className="text-xs text-[#94A3B8] mt-6">Cấu hình tag chi tiết từng máy được quản lý trong Drawer máy.</p>
+            <p className="text-xs text-[text-slate-400] mt-6">Cấu hình tag chi tiết từng máy được quản lý trong Drawer máy.</p>
           </div>
         )}
       </div>
