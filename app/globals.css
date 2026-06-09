@@ -3,21 +3,26 @@
 :root {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
-  /* FII Brand Colors - Foxconn Industrial Internet */
-  --fii-blue: #003087;
-  --fii-blue-light: #0055A4;
-  --fii-red: #E30613;
-  --fii-red-dark: #B80510;
-
-  /* Industrial Light Theme (Control Room) */
-  --bg: #F8F9FC;
-  --bg-elevated: #FFFFFF;
-  --border: #E2E8F0;
-  --text: #0F172A;
-  --text-muted: #64748B;
-
-  /* Status */
+  
+  /* Enterprise Clean - Professional Business Theme */
+  --primary: #2563EB;        /* Royal Blue */
+  --primary-hover: #1D4ED8;  /* Darker Blue */
+  --primary-light: #DBEAFE;  /* Light Blue background */
+  
+  --secondary: #64748B;      /* Slate Gray */
+  --success: #10B981;        /* Emerald Green */
+  --warning: #F59E0B;        /* Amber */
+  --danger: #EF4444;         /* Red */
+  --info: #3B82F6;           /* Blue Info */
+  
+  /* Light Theme - Clean & Professional */
+  --bg: #F8FAFC;             /* Very light slate */
+  --bg-elevated: #FFFFFF;    /* Pure white cards */
+  --border: #E2E8F0;         /* Light border */
+  --text: #1E293B;           /* Dark slate text */
+  --text-muted: #64748B;     /* Muted text */
+  
+  /* Status Colors */
   --status-running: #10B981;
   --status-idle: #F59E0B;
   --status-error: #EF4444;
@@ -26,126 +31,442 @@
 }
 
 .dark {
-  --bg: #0A0E17;
-  --bg-elevated: #111827;
-  --border: #1F2937;
-  --text: #F1F5F9;
-  --text-muted: #94A3B8;
+  --bg: #0F172A;             /* Dark slate background */
+  --bg-elevated: #1E293B;    /* Slightly lighter cards */
+  --border: #334155;         /* Subtle borders */
+  --text: #F1F5F9;           /* Light text */
+  --text-muted: #94A3B8;     /* Muted light text */
+  --primary-light: #1E3A5F;  /* Dark blue tint */
 }
 
 /* Base */
 body {
   font-family: var(--font-geist-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Industrial Card & Surface */
+/* Modern Card with subtle shadow */
 .card {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .dark .card {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Status badges & pulses (for running/error) */
+.dark .card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Compact Status dots with smooth pulse */
 .status-dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 9999px;
+  display: inline-block;
 }
 
 .status-running {
   background: var(--status-running);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-  animation: pulse-running 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.status-idle {
+  background: var(--status-idle);
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
 }
 
 .status-error {
   background: var(--status-error);
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25);
-  animation: pulse-error 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+  animation: pulse-soft 1.5s ease-in-out infinite;
 }
 
-@keyframes pulse-running {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.75; }
+.status-maint {
+  background: var(--status-maint);
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
 }
 
-@keyframes pulse-error {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.65; }
+.status-offline {
+  background: var(--status-offline);
 }
 
-/* React Flow custom node styles (will be used in phase 3) */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+/* React Flow modern node styles */
 .react-flow__node-machine {
-  border-radius: 10px;
-  border: 2px solid var(--border);
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
   background: var(--bg-elevated);
-  min-width: 168px;
+  min-width: 180px;
   font-size: 13px;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.react-flow__node-machine:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.15);
 }
 
 .dark .react-flow__node-machine {
-  background: #0F172A;
+  background: #1E293B;
+  border-color: #334155;
 }
 
-/* Table & Data */
-.table-industrial th {
+.dark .react-flow__node-machine:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.25);
+}
+
+/* Professional Table */
+.table-enterprise {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-enterprise th {
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
   font-size: 11px;
   letter-spacing: 0.5px;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
 }
 
-/* Login card polish */
+.table-enterprise td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table-enterprise tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.table-enterprise tbody tr:hover {
+  background-color: var(--primary-light);
+}
+
+.dark .table-enterprise tbody tr:hover {
+  background-color: rgba(37, 99, 235, 0.15);
+}
+
+/* Modern Login card */
 .login-card {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 .dark .login-card {
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* FII Button primary */
-.btn-fii {
-  background: var(--fii-blue);
+/* Enterprise Buttons */
+.btn-primary {
+  background: var(--primary);
   color: white;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.btn-fii:hover {
-  background: var(--fii-blue-light);
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(37, 99, 235, 0.25);
 }
 
-.btn-fii:active {
-  transform: translateY(1px);
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.dark .btn-outline:hover {
+  background: rgba(37, 99, 235, 0.15);
 }
 
 .btn-danger {
-  background: var(--fii-red);
+  background: var(--danger);
   color: white;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-danger:hover {
-  background: var(--fii-red-dark);
+  background: #DC2626;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(239, 68, 68, 0.25);
 }
 
-/* KPI Card */
+.btn-danger:active {
+  transform: translateY(0);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badge-error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.badge-info {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--info);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.badge-neutral {
+  background: rgba(100, 116, 139, 0.1);
+  color: var(--text-muted);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+/* KPI Card with clean typography */
+.kpi-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.kpi-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.1);
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
 .kpi-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
   font-variant-numeric: tabular-nums;
+  line-height: 1.2;
 }
 
-/* Subtle grid for industrial feel (optional on landing) */
-.bg-grid {
+.kpi-trend {
+  font-size: 13px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kpi-trend.up {
+  color: var(--success);
+}
+
+.kpi-trend.down {
+  color: var(--danger);
+}
+
+/* Input Fields - Enterprise Style */
+.input-enterprise {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-enterprise::placeholder {
+  color: var(--text-muted);
+}
+
+.input-enterprise:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.input-enterprise:disabled {
+  background: var(--bg);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Select Dropdown */
+.select-enterprise {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Subtle grid pattern for backgrounds */
+.bg-grid-enterprise {
   background-image: 
-    linear-gradient(rgba(0, 48, 135, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 48, 135, 0.035) 1px, transparent 1px);
-  background-size: 24px 24px;
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Navigation active state */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.nav-item.active {
+  background: var(--primary);
+  color: white;
+}
+
+.dark .nav-item:hover {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+/* Page transitions */
+.page-container {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

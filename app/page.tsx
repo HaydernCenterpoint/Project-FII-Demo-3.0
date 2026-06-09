@@ -24,19 +24,19 @@ function FIILogo({ className = '' }: { className?: string }) {
         {/* Main blue shape - f */}
         <path 
           d="M18 12 L18 60 L30 60 L30 42 L48 42 L48 32 L30 32 L30 22 L52 22 L52 12 Z" 
-          fill="#003087" 
+          fill="var(--primary)" 
         />
         {/* i vertical */}
-        <rect x="58" y="12" width="12" height="48" rx="1.5" fill="#003087" />
+        <rect x="58" y="12" width="12" height="48" rx="1.5" fill="var(--primary)" />
         {/* Accent red on the right i / dot area */}
-        <rect x="74" y="12" width="11" height="48" rx="1.5" fill="#003087" />
-        <rect x="74" y="12" width="11" height="14" fill="#E30613" /> {/* Red accent top */}
+        <rect x="74" y="12" width="11" height="48" rx="1.5" fill="var(--primary)" />
+        <rect x="74" y="12" width="11" height="14" fill="var(--danger)" /> {/* Red accent top */}
         {/* Small connecting geometric accent */}
-        <path d="M86 28 L94 36 L94 60 L86 52 Z" fill="#0055A4" />
+        <path d="M86 28 L94 36 L94 60 L86 52 Z" fill="var(--primary-hover)" />
       </g>
 
       {/* Text - Foxconn Industrial Internet */}
-      <g fill="#003087" fontFamily="var(--font-geist-sans), system-ui, sans-serif">
+      <g fill="var(--text)" fontFamily="var(--font-geist-sans), system-ui, sans-serif">
         <text x="108" y="32" fontSize="21" fontWeight="700" letterSpacing="-0.3">Foxconn</text>
         <text x="108" y="54" fontSize="19.5" fontWeight="600" letterSpacing="-0.2">Industrial Internet</text>
       </g>
@@ -48,13 +48,13 @@ function FIILogo({ className = '' }: { className?: string }) {
 function FIILogoSmall() {
   return (
     <div className="flex items-center gap-2.5">
-      <div className="relative h-8 w-8 rounded-lg bg-[#003087] flex items-center justify-center overflow-hidden">
+      <div className="relative h-8 w-8 rounded-lg bg-[var(--primary)] flex items-center justify-center overflow-hidden shadow-sm">
         <span className="text-white font-bold text-[17px] tracking-[-1.5px] mt-px">fii</span>
-        <div className="absolute top-1 right-1 w-2.5 h-1.5 bg-[#E30613]" />
+        <div className="absolute top-1 right-1 w-2.5 h-1.5 bg-[var(--danger)]" />
       </div>
       <div>
-        <div className="font-semibold tracking-tight text-[#003087] dark:text-white text-lg leading-none">FII</div>
-        <div className="text-[9px] text-[#003087]/70 dark:text-white/60 -mt-0.5">LINEGUARD</div>
+        <div className="font-semibold tracking-tight text-[var(--primary)] dark:text-white text-lg leading-none">FII</div>
+        <div className="text-[9px] text-[var(--text-muted)] -mt-0.5">LINEGUARD</div>
       </div>
     </div>
   )
@@ -123,22 +123,22 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F9FC] dark:bg-[#0A0E17] overflow-hidden">
-      {/* Top Navigation - Industrial minimal */}
-      <nav className="border-b border-[#E2E8F0] dark:border-white/10 bg-white/80 dark:bg-[#0A0E17]/80 backdrop-blur-lg sticky top-0 z-50">
+    <div className="min-h-screen bg-[var(--bg)] overflow-hidden">
+      {/* Top Navigation - Enterprise minimal */}
+      <nav className="border-b border-[var(--border)] bg-[var(--bg-elevated)]/80 backdrop-blur-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <FIILogoSmall />
-            <div className="ml-1.5 pl-3 border-l border-[#E2E8F0] dark:border-white/15">
-              <span className="text-sm font-medium tracking-[1.5px] text-[#003087] dark:text-white/90">LINEGUARD</span>
+            <div className="ml-1.5 pl-3 border-l border-[var(--border)]">
+              <span className="text-sm font-medium tracking-[1.5px] text-[var(--text)]">LINEGUARD</span>
             </div>
           </div>
           <div className="flex items-center gap-4 text-sm">
-            <div className="hidden md:flex items-center gap-2 text-[#64748B] dark:text-slate-400">
+            <div className="hidden md:flex items-center gap-2 text-[var(--text-muted)]">
               <Shield className="w-4 h-4" />
               <span>Phân quyền RBAC</span>
             </div>
-            <div className="px-3 py-1 rounded-full bg-[#003087]/5 dark:bg-white/5 text-[#003087] dark:text-white text-xs font-medium tracking-widest">
+            <div className="px-3 py-1 rounded-full badge-neutral text-xs font-medium tracking-widest">
               v1.0 • MKZ DEMO
             </div>
           </div>
@@ -150,20 +150,20 @@ function LoginForm() {
         <div className="grid lg:grid-cols-12 gap-x-12 gap-y-14 items-center">
           {/* Left: Branding & Value Prop */}
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center gap-2 px-4 h-8 rounded-full border border-[#003087]/15 bg-white dark:bg-white/5 text-[#003087] dark:text-white/90 text-sm mb-6">
-              <div className="w-2 h-2 rounded-full bg-[#E30613] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 h-8 rounded-full border border-[var(--primary)]/20 bg-[var(--bg-elevated)] text-[var(--primary)] text-sm mb-6">
+              <div className="w-2 h-2 rounded-full bg-[var(--danger)] animate-pulse" />
               FOXCONN INDUSTRIAL INTERNET
             </div>
 
-            <h1 className="text-5xl lg:text-[56px] leading-[1.05] font-semibold tracking-tighter text-[#0F172A] dark:text-white mb-5">
+            <h1 className="text-5xl lg:text-[56px] leading-[1.05] font-semibold tracking-tighter text-[var(--text)] dark:text-white mb-5">
               FII LineGuard
             </h1>
             
-            <p className="text-2xl lg:text-3xl font-medium tracking-tight text-[#003087] dark:text-[#60A5FA] mb-6">
+            <p className="text-2xl lg:text-3xl font-medium tracking-tight text-[var(--primary)] dark:text-[#60A5FA] mb-6">
               Hệ thống Quản lý &amp; Giám sát Dây chuyền Sản xuất Thông minh
             </p>
 
-            <p className="max-w-[620px] text-xl text-[#475569] dark:text-slate-300 leading-relaxed mb-9">
+            <p className="max-w-[620px] text-xl text-[var(--text-muted)] dark:text-slate-300 leading-relaxed mb-9">
               Giám sát thời gian thực • OEE • PLC Integration • Báo cáo tự động<br />
               Dành cho nhà máy thông minh Foxconn Industrial Internet
             </p>
@@ -175,8 +175,8 @@ function LoginForm() {
                 { icon: Zap, label: 'Mô phỏng PLC & Realtime' },
                 { icon: Users, label: 'Phân quyền 4 cấp độ' },
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 text-[#334155] dark:text-slate-300">
-                  <item.icon className="w-4 h-4 text-[#003087] dark:text-[#60A5FA]" />
+                <div key={idx} className="flex items-center gap-2.5 text-[var(--text)]">
+                  <item.icon className="w-4 h-4 text-[var(--primary)]" />
                   <span>{item.label}</span>
                 </div>
               ))}
@@ -185,20 +185,20 @@ function LoginForm() {
 
           {/* Right: Login Card */}
           <div className="lg:col-span-5">
-            <div className="login-card rounded-2xl p-8 md:p-9 border">
+            <div className="login-card p-8 md:p-9">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl bg-[#003087] text-white">
+                <div className="p-2.5 rounded-xl bg-[var(--primary)] text-white shadow-sm">
                   <LogIn className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-semibold text-xl tracking-tight">Đăng nhập hệ thống</div>
-                  <div className="text-sm text-[#64748B] dark:text-slate-400">Sử dụng Mã nhân viên công ty</div>
+                  <div className="font-semibold text-xl tracking-tight text-[var(--text)]">Đăng nhập hệ thống</div>
+                  <div className="text-sm text-[var(--text-muted)]">Sử dụng Mã nhân viên công ty</div>
                 </div>
               </div>
 
               <form id="login-form" onSubmit={handleLogin} className="space-y-5">
                 <div>
-                  <label className="block text-xs font-semibold tracking-widest text-[#64748B] dark:text-slate-400 mb-1.5">
+                  <label className="block text-xs font-semibold tracking-widest text-[var(--text-muted)] mb-1.5">
                     MÃ NHÂN VIÊN
                   </label>
                   <input
@@ -206,14 +206,14 @@ function LoginForm() {
                     value={employeeCode}
                     onChange={(e) => setEmployeeCode(e.target.value.toUpperCase())}
                     placeholder="CQ001"
-                    className="w-full h-12 px-4 rounded-xl border border-[#E2E8F0] dark:border-white/15 bg-white dark:bg-[#111827] font-mono text-lg tracking-[3px] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#003087] dark:focus:border-[#60A5FA] transition"
+                    className="input-enterprise font-mono text-lg tracking-[3px]"
                     required
                     autoComplete="username"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold tracking-widest text-[#64748B] dark:text-slate-400 mb-1.5">
+                  <label className="block text-xs font-semibold tracking-widest text-[var(--text-muted)] mb-1.5">
                     MẬT KHẨU
                   </label>
                   <input
@@ -221,14 +221,14 @@ function LoginForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full h-12 px-4 rounded-xl border border-[#E2E8F0] dark:border-white/15 bg-white dark:bg-[#111827] text-lg placeholder:text-[#94A3B8] focus:outline-none focus:border-[#003087] dark:focus:border-[#60A5FA] transition"
+                    className="input-enterprise text-lg"
                     required
                     autoComplete="current-password"
                   />
                 </div>
 
                 {error && (
-                  <div className="text-sm text-[#E30613] bg-[#FEF2F2] dark:bg-[#3F1A1A] border border-[#FECACA] dark:border-red-900/50 px-4 py-2.5 rounded-lg">
+                  <div className="badge-error px-4 py-2.5 text-sm">
                     {error}
                   </div>
                 )}
@@ -236,7 +236,7 @@ function LoginForm() {
                 <button
                   type="submit"
                   disabled={isLoading || !employeeCode || !password}
-                  className="btn-fii w-full h-12 rounded-xl font-semibold text-base flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-1"
+                  className="btn-primary w-full h-12 rounded-lg font-semibold text-base flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-1"
                 >
                   {isLoading ? 'Đang xác thực...' : 'ĐĂNG NHẬP VÀO HỆ THỐNG'}
                   {!isLoading && <ArrowRight className="w-4 h-4" />}
@@ -244,22 +244,22 @@ function LoginForm() {
               </form>
 
               {/* Demo accounts */}
-              <div className="mt-7 pt-6 border-t border-[#E2E8F0] dark:border-white/10">
-                <div className="text-[10px] font-semibold tracking-[1px] text-[#64748B] dark:text-slate-400 mb-3">TÀI KHOẢN DEMO (CLICK ĐỂ ĐĂNG NHẬP NHANH)</div>
+              <div className="mt-7 pt-6 border-t border-[var(--border)]">
+                <div className="text-[10px] font-semibold tracking-[1px] text-[var(--text-muted)] mb-3">TÀI KHOẢN DEMO (CLICK ĐỂ ĐĂNG NHẬP NHANH)</div>
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   {DEMO_ACCOUNTS.map((acc, index) => (
                     <button
                       key={index}
                       type="button"
                       onClick={() => quickLogin(acc.code, acc.pass)}
-                      className="text-left px-3.5 py-2.5 rounded-lg border border-[#E2E8F0] hover:border-[#003087]/40 dark:border-white/10 dark:hover:border-white/30 transition group"
+                      className="text-left px-3.5 py-2.5 rounded-lg border border-[var(--border)] hover:border-[var(--primary)] hover:bg-[var(--primary-light)] transition group"
                     >
-                      <div className="font-mono text-[#003087] dark:text-[#60A5FA] font-semibold tracking-widest text-sm group-hover:underline">{acc.code}</div>
-                      <div className="text-xs text-[#475569] dark:text-slate-400">{acc.role} • {acc.desc}</div>
+                      <div className="font-mono text-[var(--primary)] font-semibold tracking-widest text-sm group-hover:underline">{acc.code}</div>
+                      <div className="text-xs text-[var(--text-muted)]">{acc.role} • {acc.desc}</div>
                     </button>
                   ))}
                 </div>
-                <p className="text-[11px] text-center text-[#94A3B8] dark:text-slate-500 mt-3">
+                <p className="text-[11px] text-center text-[var(--text-muted)] mt-3">
                   Mật khẩu hiển thị chỉ dùng cho môi trường demo
                 </p>
               </div>
@@ -270,30 +270,30 @@ function LoginForm() {
         {/* Reference diagram from original image */}
         <div className="mt-20">
           <div className="flex items-center gap-3 mb-4">
-            <div className="h-px flex-1 bg-[#E2E8F0] dark:bg-white/10" />
-            <div className="uppercase text-xs tracking-[2px] text-[#64748B] dark:text-slate-400 font-medium">Tham khảo sơ đồ gốc</div>
-            <div className="h-px flex-1 bg-[#E2E8F0] dark:bg-white/10" />
+            <div className="h-px flex-1 bg-[var(--border)]" />
+            <div className="uppercase text-xs tracking-[2px] text-[var(--text-muted)] font-medium">Tham khảo sơ đồ gốc</div>
+            <div className="h-px flex-1 bg-[var(--border)]" />
           </div>
 
-          <div className="rounded-2xl overflow-hidden border border-[#E2E8F0] dark:border-white/10 bg-white dark:bg-[#111827] p-3 shadow-sm">
+          <div className="rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--bg-elevated)] p-3 shadow-sm">
             <div className="relative">
               <img 
                 src="/images/mkz-diagram.png" 
                 alt="Sơ đồ mô phỏng dây chuyền tự động MCKENZIE AUTO LINE - 2 station đầu vào: Vỏ/Chassis và Bo mạch" 
-                className="w-full max-h-[340px] object-contain rounded-lg bg-[#F8FAFC] dark:bg-[#0A0E17]"
+                className="w-full max-h-[340px] object-contain rounded-lg bg-[var(--bg)]"
               />
               <div className="absolute bottom-3 right-3 bg-black/70 text-white text-[10px] px-3 py-1 rounded font-mono tracking-widest">
                 MCKENZIE AUTO LINE — 2 FEEDING STATIONS
               </div>
             </div>
           </div>
-          <p className="text-center text-xs text-[#64748B] dark:text-slate-500 mt-3">
+          <p className="text-center text-xs text-[var(--text-muted)] mt-3">
             Sơ đồ ban đầu từ tài liệu nội bộ Foxconn Industrial Internet • Sẽ được tái tạo đầy đủ 7-8 trạm trong React Flow
           </p>
         </div>
 
         {/* Bottom branding bar */}
-        <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-y-4 text-sm text-[#64748B] dark:text-slate-400 border-t border-[#E2E8F0] dark:border-white/10 pt-8">
+        <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-y-4 text-sm text-[var(--text-muted)] border-t border-[var(--border)] pt-8">
           <div>
             © Foxconn Industrial Internet • Hệ thống MES nội bộ • Dành cho nhân viên được cấp quyền
           </div>
@@ -312,8 +312,8 @@ function LoginForm() {
 export default function FIILineGuardLanding() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#F8F9FC] dark:bg-[#0A0E17] flex items-center justify-center">
-        <div className="text-[#003087] dark:text-white text-sm tracking-widest">ĐANG TẢI FII LINEGUARD...</div>
+      <div className="min-h-screen bg-[var(--bg)] flex items-center justify-center">
+        <div className="text-[var(--primary)] text-sm tracking-widest">ĐANG TẢI FII LINEGUARD...</div>
       </div>
     }>
       <LoginForm />
